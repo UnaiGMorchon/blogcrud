@@ -6,7 +6,8 @@ const [title, setTitle] = useState(post? post.title : ""); // con esto aparece e
 const [body, setBody] = useState(post?.body); // esto es igual q el de arriba perode otra forma de hacerlo.
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
+        if(title.trim() === '' || body.trim() === '') return; // para que no se puede hacer un post vacio.
         const post = {title, body};
         onSubmit (post);
         setBody("");

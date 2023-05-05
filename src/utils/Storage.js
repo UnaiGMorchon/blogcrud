@@ -12,9 +12,28 @@ const addPost =(post) => {
     localStorage.setItem('posts', JSON.stringify(newpost));
 };
 
-const removePost =(post) => {
+const removePost =(id) => {
     const newpost = getPosts();
-    const newPosts = newpost.filter(element => newpost !== element);
+    const newPosts = newpost.filter(element => element.id !== id);
     localStorage.setItem('posts', JSON.stringify(newPosts));
 };
 
+
+const updatePost =(post) =>{
+    const newpost =getPosts();
+    const newPosts = newpost.map(element => {
+        if(element.id === post.id) {
+            return post;
+        }
+        return element;
+});
+localStorage.setItem("posts", JSON.stringify(newPosts));
+}
+
+
+export {
+getPosts,
+addPost,
+removePost,
+updatePost
+}
